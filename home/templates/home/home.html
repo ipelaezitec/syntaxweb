@@ -1,0 +1,54 @@
+{% extends "home/base.html" %}
+
+
+{% block content %}
+
+    <div class="row">
+        <!-- parte izquierda de la web -->
+
+        <div class="col-sm-3 ">
+            <div class="d-flex flex-row flex-column color1">
+
+                <div class="p-2 mark-button box-shadow">Favoritos</div>
+
+                <div class="nav-category box-shadow">Categorias</div>
+            </div>
+        </div>
+
+        <!-- Parte derecha de la web -->
+        <div class="col-sm ">
+            <div class="d-flex flex-row flex-wrap lang-select box-shadow">
+                <!-- Caja de selección de lenguajes -->
+                <div class="p-2 lang-text">
+                            <p class="align-middle">Selecciona múltiples lenguajes para comparar!</p>
+                </div>
+
+                <!-- Item para seleccionar Tipo : Iterable -->
+                <div class="p-2">
+                    test
+                </div>
+
+            </div>
+            <!-- Syntax Post  Tipo : Iterable -->
+            {% for p in post2 %}
+            <div class="d-flex flex-row flex-wrap syntax-post box-shadow">
+                <div class="left-frame col-sm-3">
+                    Cof
+                </div>
+                <div class="col-sm">
+                    <p>{{ p.content}}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+
+            <!--div>
+                iterables post
+
+            </div-->
+        </div>
+    </div>
+
+{% endblock content %}
