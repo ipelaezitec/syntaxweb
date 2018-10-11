@@ -30,7 +30,15 @@
 
     </header>
     <div class="container-fluid">
-         {% block content %}{%  endblock %}
+        <!-- mensaje de redirect todo: me gustaría hacerlo con e-mail-pass en vez de user-pass -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} pt-2">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{%  endblock %}
     </div>
 
     <footer class="footer">
