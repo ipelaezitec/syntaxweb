@@ -122,4 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#merixstudio.com/blog/django-crispy-forms-what-are-they-about
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# para redireccionar el login
+LOGIN_REDIRECT_URL = 'web-home'
+

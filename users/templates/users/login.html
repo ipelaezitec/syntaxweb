@@ -2,25 +2,27 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
+
     <div class="content-section">
         <form method="POST">
             {%  csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Formulario de registro.</legend>
+                <legend class="border-bottom mb-4">Inicio de sesión</legend>
 
                 <!-- {{ form.as_p}} -->
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">
-                    Registrarse
+                    Iniciar sesión.
                 </button>
             </div>
         </form>
 
         <div class="border-top pt-3">
             <small class="text-muted">
-                Ya estas registrado? <a class="ml-2" href="{% url 'login' %}"> Iniciar sesión.</a>
+                Necesitas registrarte? <a class="ml-2" href="{% url 'register' %}"> Registrarse.</a>
             </small>
         </div>
 

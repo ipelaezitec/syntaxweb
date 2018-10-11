@@ -19,5 +19,5 @@ def home(request):
     }
     return render(request,'home/home.html',context)
 
-def about(request):
-    return HttpResponse('<hi>Blog About</h1>')
+#def about(request):
+#    return HttpResponse('<hi> About</h1>')

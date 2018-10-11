@@ -8,9 +8,9 @@
 
         <div class="col-sm-3 ">
             <div class="d-flex flex-row flex-column color1">
-
+                {% if user.is_authenticated %}
                 <div class="p-2 mark-button box-shadow">Favoritos</div>
-
+                {% endif %}
                 <div class="nav-category box-shadow">Categorias</div>
             </div>
         </div>
