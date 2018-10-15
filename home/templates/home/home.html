@@ -5,11 +5,10 @@
 
     <div class="row">
         <!-- parte izquierda de la web -->
-
         <div class="col-sm-3 ">
             <div class="d-flex flex-row flex-column color1">
                 {% if user.is_authenticated %}
-                <div class="p-2 mark-button box-shadow">Favoritos</div>
+                <a class="p-2 mark-button box-shadow" href="{% url 'favorites' %}">Favoritos</a>
                 {% endif %}
                 <div class="nav-category box-shadow">Categorias</div>
             </div>
@@ -20,26 +19,24 @@
             <div class="d-flex flex-row flex-wrap lang-select box-shadow">
                 <!-- Caja de selección de lenguajes -->
                 <div class="p-2 lang-text">
-                            <p class="align-middle">Selecciona múltiples lenguajes para comparar!</p>
+                        <p class="align-middle">Selecciona múltiples lenguajes para comparar!</p>
                 </div>
 
-                <!-- Item para seleccionar Tipo : Iterable -->
-                <div class="p-2">
-                    test
-                </div>
+                <!-- iterable de lenguajes  todo : front end - imagen y css-->
+                {% for lang in languages %}
+                    <div class="p-2">
+                        {{ lang.name }}
+                    </div>
+                {% endfor %}
+
 
             </div>
             <!-- Syntax Post  Tipo : Iterable -->
-            {% for p in post2 %}
-            <div class="d-flex flex-row flex-wrap syntax-post box-shadow">
-                <div class="left-frame col-sm-3">
-                    Cof
-                </div>
-                <div class="col-sm">
-                    <p>{{ p.content }}</p>
-                </div>
-            </div>
-            {% endfor %}
+            {% block syntaxposts %}
+
+            {% endblock syntaxposts %}
+            {% comment %}
+{% endcomment %}
 
 
 

@@ -129,3 +129,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # para redireccionar el login
 LOGIN_REDIRECT_URL = 'web-home'
 
+LOGIN_URL = 'login'
+

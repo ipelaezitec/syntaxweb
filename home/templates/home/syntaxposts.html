@@ -1,0 +1,16 @@
+{% extends "home/home.html" %}
+{% block syntaxposts %}
+            {% for p in posts %}
+            <div class="d-flex flex-row flex-wrap syntax-post box-shadow">
+                <div class="left-frame col-sm-3">
+                    Cof
+                </div>
+                <div class="col-sm">
+                    <p>{{ p.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+{% endblock syntaxposts %}
