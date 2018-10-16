@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Language(models.Model):
     name = models.CharField(max_length=100,verbose_name="Nombre")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    #img = models.ImageField(verbose_name="Imagen",upload_to=)
+    #img = models.ImageField(verbose_name="Imagen",upload_to='lan_pics')
     def __str__(self):
         return self.name
 
