@@ -123,6 +123,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+#nueva ruta para las imagenes"
+
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+
 #merixstudio.com/blog/django-crispy-forms-what-are-they-about
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
