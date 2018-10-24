@@ -16,6 +16,7 @@ def home(request):
     }
     return render(request,'home/home.html',context)
 
+#temporal
 def syntaxposts(request):
     posts =SyntaxPost.objects.all()
     languages = Language.objects.all()
@@ -28,8 +29,12 @@ def syntaxposts(request):
 
 @login_required
 def favorites(request):
-
-    return render(request,'home/favorites.html',None)
+    test = request.user.id
+    print (test)
+    context = {
+        'test':test,
+    }
+    return render(request,'home/favorites.html',context)
 
 #def about(request):
 #    return HttpResponse('<hi> About</h1>')

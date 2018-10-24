@@ -18,16 +18,19 @@
         <div class="col-sm ">
             <div class="d-flex flex-row flex-wrap lang-select box-shadow">
                 <!-- Caja de selección de lenguajes -->
-                <div class="p-2 lang-text">
+                <div class="p-2 lang-selector-text">
                         <p class="align-middle">Selecciona múltiples lenguajes para comparar!</p>
                 </div>
 
                 <!-- iterable de lenguajes  todo : front end - imagen y css-->
-                {% for lang in languages %}
-                    <div class="p-2">
-                        {{ lang.name }}
-                        <img src="{{ lang.img.url }}" >
-                    </div>
+
+                {% for lang in posts %}
+                    {% if lang.active %}
+                        <div class="p-1">
+                            <img class="lang-img" src="{{ lang.language.img.url }}" >
+                            <p class="lang-text">{{ lang.language.name }}</p>
+                        </div>
+                    {% endif %}
                 {% endfor %}
 
 
