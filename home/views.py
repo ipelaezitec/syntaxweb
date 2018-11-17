@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from home.models import SyntaxPost,Language
+from home.models import SyntaxPost,Language,Marker
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -10,6 +10,7 @@ def home(request):
     posts =SyntaxPost.objects.all()
     languages = Language.objects.all()
     #sp = SyntaxPost.objects.first()
+
     context = {
         'posts':posts,
         'languages':languages,
@@ -18,6 +19,7 @@ def home(request):
 
 #temporal
 def syntaxposts(request):
+    print(request.GET)
     posts =SyntaxPost.objects.all()
     languages = Language.objects.all()
     #sp = SyntaxPost.objects.first()
@@ -29,10 +31,13 @@ def syntaxposts(request):
 
 @login_required
 def favorites(request):
-    test = request.user.id
-    print (test)
+    usuario = request.user.id
+    markers = Marker.objects.filter(user=usuario)
+    print(markers)
+
     context = {
-        'test':test,
+        'usuario':usuario,
+        'markers':markers,
     }
     return render(request,'home/favorites.html',context)
 

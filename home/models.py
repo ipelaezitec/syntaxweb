@@ -9,6 +9,8 @@ class Language(models.Model):
     name = models.CharField(max_length=100,verbose_name="Nombre")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     img = models.ImageField(default='default.jpg',verbose_name="Imagen",upload_to='lan_pics')
+    active = models.BooleanField(default=False)  # van a ser verdaderos cuando quiera mostrarlos
+
     def __str__(self):
         return self.name
 
@@ -25,6 +27,7 @@ class SyntaxPost(models.Model):
     sentence = models.ForeignKey(Sentence, verbose_name="sentencia",on_delete=models.CASCADE)
     language = models.ForeignKey(Language, verbose_name="lenguaje",on_delete=models.CASCADE)
     active = models.BooleanField(default=False)  # van a ser verdaderos cuando quiera mostrarlos
+
     def __str__(self):
         return str(self.content)
 

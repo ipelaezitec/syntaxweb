@@ -4,7 +4,7 @@ from .models import Language,Sentence,SyntaxPost,Report,Marker
 
 class SyntaxPostAdmin(admin.ModelAdmin):
     readonly_fields = ('updated',)
-    list_display=('content','active')
+    list_display=('content','language')
 
 
 admin.site.register(Language)

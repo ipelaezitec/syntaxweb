@@ -24,11 +24,13 @@
 
                 <!-- iterable de lenguajes  todo : front end - imagen y css-->
 
-                {% for lang in posts %}
+                {% for lang in languages %}
                     {% if lang.active %}
                         <div class="p-1">
-                            <img class="lang-img" src="{{ lang.language.img.url }}" >
-                            <p class="lang-text">{{ lang.language.name }}</p>
+                            <a href="{% url 'syntaxpost' %}">
+                                <img class="lang-img" src="{{ lang.img.url }}" >
+                                <p class="lang-text">{{ lang.name }}</p>
+                            </a>
                         </div>
                     {% endif %}
                 {% endfor %}
