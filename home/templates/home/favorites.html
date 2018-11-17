@@ -1,17 +1,34 @@
 {% extends "home/base.html" %}
 {% block content %}
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col text-center font-weight-bold">
+            <p class="p-2 h2 font-montserrat text-center">Panel de favoritos</p>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-3 col-xs-12 col-sm-12">
 
         </div>
-        <div class="col">
+        <div class="col-md-9 col-xs-12 col-sm-12">
             {% for marker in markers %}
-                    <div class="d-flex flex-row flex-wrap syntax-post box-shadow">
-                        <div class="left-frame col-sm-3">
-                            {{ marker.post.language.name }}
+                    <div class="d-flex flex-row syntax-post box-shadow">
+                        <div class="left-frame col-sm-3 col-md-3 col-xs-12">
+                            <img class="p-2 mt-2 w-100" src="{{ marker.post.language.img.url }}" alt="language img">
+                            <div class="text-center font-weight-bold font-montserrat">{{ marker.post.language.name }}</div>
                         </div>
-                        <div class="col-sm">
-                            <p>{{ marker.post.content }}</p>
+
+                        <div class="col font-raleway">
+                            <!-- div de arriba con solo syntax -->
+                            <div class="m-3">
+                                <div class="w-75">
+                                    <p class="text-wraped font-raleway">{{ marker.post.content }}</p>
+
+                                </div>
+                            </div>
+                            <!-- div de abajo con botones -->
                         </div>
                     </div>
             {% endfor %}

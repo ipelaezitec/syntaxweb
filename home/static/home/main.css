@@ -42,6 +42,7 @@
     width: 200px;
     color : #31758a;
 }
+
 .lang-text{
     font-stretch: condensed;
     font-family: Roboto,serif;
@@ -53,7 +54,6 @@
 .lang-img{
     width: 45px;
 }
-
 
 .syntax-post{
     margin-top:6px;
@@ -79,4 +79,28 @@
     min-height: 548px;
 }
 
+/* General css */
+.font-montserrat{font-family: 'Montserrat',sans-serif;}
+.font-raleway{font-family: 'Raleway',sans-serif;}
 
+.text-wraped{word-wrap: break-word;}
+
+/* /panel css  */
+
+.panel-card{
+  max-width: 100%;
+  /*
+  background-color: rgba(255, 255, 255, 0.8);
+  min-height: 500px;
+  box-shadow:0 10px 10px 0 rgba(0, 0, 0, 1);
+  /* padding:10px; */
+
+}
+
+.side-panel{
+  max-width: 100%;
+  border-radius: 8px;
+  background-color: #ededed;
+  /* min-height: 400px;
+  box-shadow:0 10px 10px 0 rgba(0, 0, 0, 1);*/
+}

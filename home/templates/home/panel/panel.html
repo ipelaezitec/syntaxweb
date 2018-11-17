@@ -1,0 +1,43 @@
+{% extends "home/base.html" %}
+
+{%  block content %}
+    <div class="row">
+      <div class="col-xs-12 col-sm-3">
+        <div class="d-flex flex-column side-panel p-2 mt-2 sticky-top box-shadow">
+
+            <h2 class="text-center font-montserrat"><b>Admin Panel </b></h2>
+
+          <div class="dropdown-divider"></div>
+
+          <a href="#" class="text-left  btn btn-info  btn-block active font-montserrat" role="button" aria-pressed="true">
+            Lenguajes sugeridos
+          </a>
+            <a href="#" class="text-left btn btn-info btn-block active font-montserrat" role="button" aria-pressed="true">
+            Reportes activos
+          </a>
+          <a href="#" class="text-left btn btn-info  btn-block active font-montserrat" role="button" aria-pressed="true">
+            Historial reportes
+          </a>
+            <div class="dropdown-divider"></div>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="col-xs-12 col-sm-9 mt-2">
+          <div class="panel-card">
+              {% block panelcontent %}
+
+              {%  endblock %}
+
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+{% endblock %}

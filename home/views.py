@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 from home.models import SyntaxPost,Language,Marker
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -41,5 +42,9 @@ def favorites(request):
     }
     return render(request,'home/favorites.html',context)
 
-#def about(request):
-#    return HttpResponse('<hi> About</h1>')
+@staff_member_required
+def panel(request):
+    usuario = request.user.id
+
+    context = {}
+    return render(request,'home/panel/panel.html',context)
