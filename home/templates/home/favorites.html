@@ -2,7 +2,7 @@
 {% block content %}
     <div class="row">
         <div class="col text-center font-weight-bold">
-            <p class="p-2 h2 font-montserrat text-center">Panel de favoritos</p>
+            <p class="p-2 h2 font-montserrat text-center animated jackInTheBox">Panel de favoritos</p>
         </div>
 
     </div>
@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-9 col-xs-12 col-sm-12">
             {% for marker in markers %}
-                    <div class="d-flex flex-row syntax-post box-shadow">
+                    <div class="d-flex flex-row syntax-post animated bounceInRight box-shadow">
                         <div class="left-frame col-sm-3 col-md-3 col-xs-12">
                             <img class="p-2 mt-2 w-100" src="{{ marker.post.language.img.url }}" alt="language img">
                             <div class="text-center font-weight-bold font-montserrat">{{ marker.post.language.name }}</div>

@@ -1,0 +1,55 @@
+{% extends 'home/panel/panel.html' %}
+
+{% block panelcontent %}
+
+    <div class="row font-raleway">
+    <div class="card w-100 m-2">
+      <div class="card-header">
+        Lenguage sugerido : {{ syntaxposts.first.language.name }}
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h4 class="card-title"><small>Sugerido por</small> {{ syntaxposts.first.author.username}}</h4>
+                <small class="mt-1"></small>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        {% for syntaxpost in syntaxposts %}
+            <li class="list-group-item">
+                    <div class="d-flex flex-row syntax-post box-shadow">
+                        <div class="left-frame col-sm-3 col-md-3 col-xs-12">
+                            <img class="p-2 mt-2 w-100" src="{{ syntaxpost.language.img.url }}" alt="language img">
+                            <div class="text-center font-weight-bold font-montserrat">{{ syntaxpost.language.name }}</div>
+                        </div>
+
+                        <div class="col font-raleway">
+                            <!-- div de arriba con solo syntax -->
+                            <div class="m-3">
+                                <div class="w-75">
+                                    <p class="text-wraped font-raleway">{{ syntaxpost.content }}</p>
+
+                                </div>
+                            </div>
+                            <!-- div de abajo con botones -->
+                        </div>
+                    </div>
+            </li>
+            <!-- li class="list-group-item">{{ syntaxpost.content }}</li -->
+
+        {% endfor %}
+
+
+{% comment %}        <li class="list-group-item">
+            <div>
+                <a href="{% url 'updatelang' id=syntaxposts.first.language.id %}" class="btn btn-success float-right"> Habilitar </a>
+            </div>
+        </li>{% endcomment %}
+
+      </ul>
+    </div>
+
+
+
+
+
+{% endblock %}

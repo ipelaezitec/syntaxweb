@@ -8,15 +8,17 @@
         <div class="col-sm-3 ">
             <div class="d-flex flex-row flex-column color1">
                 {% if user.is_authenticated %}
-                <a class="p-2 mark-button box-shadow" href="{% url 'favorites' %}">Favoritos</a>
+                <a class="mt-2 btn btn-warning font-montserrat font-weight-bold  box-shadow animated fadeInLeft" href="{% url 'favorites' %}">
+                    Favoritos <i class="far fa-bookmark ml-3"></i>
+                </a>
                 {% endif %}
-                <div class="nav-category box-shadow">Categorias</div>
+                <div class="nav-category box-shadow animated fadeInLeft">Categorias</div>
             </div>
         </div>
 
         <!-- Parte derecha de la web -->
         <div class="col-sm ">
-            <div class="d-flex flex-row flex-wrap lang-select box-shadow">
+            <div class="d-flex flex-row lang-select box-shadow animated fadeIn ">
                 <!-- Caja de selección de lenguajes -->
                 <div class="p-2 lang-selector-text">
                         <p class="align-middle">Selecciona múltiples lenguajes para comparar!</p>
@@ -26,12 +28,19 @@
 
                 {% for lang in languages %}
                     {% if lang.active %}
+
                         <div class="p-1">
-                            <a href="{% url 'syntaxpost' %}">
-                                <img class="lang-img" src="{{ lang.img.url }}" >
-                                <p class="lang-text">{{ lang.name }}</p>
-                            </a>
+
+                                <a href="{% url 'syntaxpost' %}" class="">
+                                    <div class="align-content-center">
+                                        <img class="lang-img" src="{{ lang.img.url }}" >
+
+                                    </div>
+                                    <p class="lang-text text-center ">{{ lang.name }}</p>
+                                </a>
+
                         </div>
+
                     {% endif %}
                 {% endfor %}
 

@@ -1,0 +1,58 @@
+{% extends 'home/panel/panel.html' %}
+
+{% block panelcontent %}
+
+
+    <div class="row font-raleway">
+    <div class="card w-100 m-2">
+      <div class="card-header">
+          {{ report.post.language.name }} - {{ report.post.sentence.name }}
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+            <h5 class="card-title"><small>Reportado por</small> {{ report.user.username}}</h5>
+                <small class="mt-1"></small>
+        </div>
+      </div>
+
+
+      <ul class="list-group list-group-flush">
+
+          <li class="list-group-item">
+            <p class="font-montserrat">Problema : {{ report.description }}</p>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex flex-row syntax-post box-shadow">
+                <div class="left-frame col-sm-3 col-md-3 col-xs-12">
+                    <img class="p-2 mt-2 w-100" src="{{ report.post.language.img.url }}" alt="language img">
+                    <div class="text-center font-weight-bold font-montserrat">{{ report.post.language.name }}</div>
+                </div>
+
+                <div class="col font-raleway">
+                    <!-- div de arriba con solo syntax -->
+                    <div class="m-3">
+                        <div class="w-75">
+                            <p class="text-wraped font-raleway">{{ report.post.content }}</p>
+
+                        </div>
+                    </div>
+                    <!-- div de abajo con botones -->
+                </div>
+            </div>
+            </li>
+
+
+
+
+       {% comment %} <li class="list-group-item">
+            <div>
+                <a href="{% url 'updatelang' id=syntaxposts.first.language.id %}" class="btn btn-success float-right"> Habilitar </a>
+            </div>
+        </li>{% endcomment %}
+
+      </ul>
+    </div>
+
+
+
+{% endblock %}

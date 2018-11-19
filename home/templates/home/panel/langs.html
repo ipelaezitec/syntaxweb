@@ -1,0 +1,31 @@
+{% extends 'home/panel/panel.html' %}
+{% load humanize %}
+
+{% block panelcontent %}
+    <h2 class="text-center font-montserrat"><b>Lenguajes </b></h2>
+    <div class="font-raleway">
+        {% for lang in langs %}
+
+            <div class="list-group p-1 animated flipInX">
+
+              <a href="{% url 'lang' id=lang.id %}" class="list-group-item list-group-item-action">
+                   <div class="d-flex justify-content-between">
+                    <h6 class="">{{ lang.name }}</h6>
+                    <small class="mt-1">created at {{lang.created|naturaltime}}</small>
+                  </div>
+              </a>
+
+            </div>
+        {% empty %}
+          <div class="alert alert-info mt-4 animated flipInX" role="alert">
+
+                <h5 class="text-center font-montserrat ">No hay lenguajes activos</h5>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+
+{% endblock%}

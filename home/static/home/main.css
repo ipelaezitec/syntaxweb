@@ -1,4 +1,13 @@
 /* General */
+
+.container-custom{
+    width: 35%;
+    margin:auto;
+    margin-top:40px;
+    padding:20px;
+    box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 .header{
     height: 40px;
     background-color: #343637;
@@ -89,18 +98,13 @@
 
 .panel-card{
   max-width: 100%;
-  /*
-  background-color: rgba(255, 255, 255, 0.8);
-  min-height: 500px;
-  box-shadow:0 10px 10px 0 rgba(0, 0, 0, 1);
-  /* padding:10px; */
-
 }
 
 .side-panel{
   max-width: 100%;
   border-radius: 8px;
   background-color: #ededed;
-  /* min-height: 400px;
-  box-shadow:0 10px 10px 0 rgba(0, 0, 0, 1);*/
+
 }
+
+/* effects*/

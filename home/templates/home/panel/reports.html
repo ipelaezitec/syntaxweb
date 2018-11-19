@@ -1,0 +1,43 @@
+{% extends 'home/panel/panel.html' %}
+{% load humanize %}
+
+{% block panelcontent %}
+    <h2 class="text-center font-montserrat"><b> Reportes </b></h2>
+    <div class="font-raleway">
+        {% for report in reports %}
+
+
+            <div class="list-group mb-2 animated flipInX">
+              <a href="{% url 'report' id=report.id %}" class="list-group-item list-group-item-action flex-column align-items-start box-shadow">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{ report.post.language.name }} - {{ report.post.sentence.name }}</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1 text-truncate">{{ report.description }}</p>
+                <small>reportado por :</small> <strong>{{ report.user.username }} </strong>
+              </a>
+            </div>
+        {% comment %}
+            <div class="list-group p-1">
+                <!-- {% url 'lang' id=lang.id %} -->
+              <a href="#" class="list-group-item list-group-item-action">
+                   <div class="d-flex justify-content-between">
+                       <h6 class=""><small>reportado por :</small> <strong>{{ report.user.username }} </strong></h6>
+                    <small class="mt-1">created at {{report.created|naturaltime}}</small>
+                  </div>
+              </a>
+
+            </div>{% endcomment %}
+        {% empty %}
+          <div class="alert alert-info mt-4" role="alert">
+
+                <h5 class="text-center font-montserrat animated flipInX">No hay reportes en este momento.</h5>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+
+{% endblock%}
