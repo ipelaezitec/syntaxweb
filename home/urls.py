@@ -13,6 +13,9 @@ urlpatterns = [
     path('panel/langpulls/update/<int:id>',views.updateLanguage,name='updatelang'),
     path('panel/reports/',views.reports,name='reports'),
     path('panel/report/<int:id>',views.report,name='report'),
+    path('panel/reports/updatestate/<int:id>',views.changeToResolved,name='changeToResolved'),
+    path('panel/reportsresolved/',views.reportsResolved,name='reportsResolved'),
+
 
 ]
 #path('about/',views.about,name='web-about')

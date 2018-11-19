@@ -118,3 +118,20 @@ def report (request,id):
         'report':report,
     }
     return render(request, 'home/panel/report.html', context)
+
+@staff_member_required
+def reportsResolved(request):
+    reports = Report.objects.filter(resolved='Y').order_by('-created')
+    print (reports)
+    context = {
+        'reports': reports,
+    }
+    return render(request, 'home/panel/reportsresolved.html', context)
+
+@staff_member_required
+def changeToResolved(request,id):
+    report = Report.objects.get(id=id)
+
+    report.resolved = 'Y'
+    report.save()
+    return redirect('reports')

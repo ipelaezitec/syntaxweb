@@ -44,11 +44,12 @@
 
 
 
-       {% comment %} <li class="list-group-item">
-            <div>
-                <a href="{% url 'updatelang' id=syntaxposts.first.language.id %}" class="btn btn-success float-right"> Habilitar </a>
+       <li class="list-group-item ">
+            <div class="float-right">
+                <a href="#" class="btn btn-danger "> Borrar reporte </a>
+                <a href="{% url 'changeToResolved' id=report.id %}" class="btn btn-success"> Marcar como resuelto </a>
             </div>
-        </li>{% endcomment %}
+        </li>
 
       </ul>
     </div>
