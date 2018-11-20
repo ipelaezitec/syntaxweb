@@ -44,6 +44,7 @@
     border:solid 1px #54b0f2;
 }
 
+
 .lang-selector-text{
     font-stretch: condensed;
     font-family: Roboto,serif;
@@ -62,6 +63,12 @@
 
 .lang-img{
     width: 45px;
+}
+
+.add-buttom{
+    color: #17a2b8;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 2.3em;
 }
 
 .syntax-post{
@@ -113,4 +120,4 @@
 
 
 .grow { transition: all .2s ease-in-out; }
-.grow:hover { transform: scale(1.5); }
+.grow:hover { transform: scale(1.4); }
