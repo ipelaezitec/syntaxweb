@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Language,Sentence,SyntaxPost,Report,Marker
+from .models import Language,Sentence,SyntaxPost,Report,Marker,Suggestion
 
 class SyntaxPostAdmin(admin.ModelAdmin):
     readonly_fields = ('updated',)
@@ -12,4 +12,5 @@ admin.site.register(Sentence)
 admin.site.register(SyntaxPost,SyntaxPostAdmin)
 admin.site.register(Report)
 admin.site.register(Marker)
+admin.site.register(Suggestion)
 # Register your models here.

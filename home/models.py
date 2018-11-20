@@ -40,6 +40,16 @@ class Marker(models.Model):
     #def __str__(self):
     #    return str(self.user.get_username(),self.post.content)
 
+class Suggestion(models.Model):
+    langName = models.CharField(max_length=30, verbose_name="Nombre del Lenguaje")
+    langVer = models.CharField(max_length=30, verbose_name="Version del Lenguaje")
+    website = models.CharField(max_length=50, verbose_name="Página Oficial")
+    comments = RichTextField(max_length=3000, verbose_name="Descripcion")
+
+class Contact(models.Model):
+    name = models.CharField(max_length=30, verbose_name="Nombre")
+    email = models.EmailField(max_length=30, verbose_name="Email")
+    mensaje = RichTextField(max_length=3000, verbose_name="Tu mensaje")
 
 class Report(models.Model):
     RESOLVED = 'Y'

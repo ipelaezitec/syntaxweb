@@ -1,0 +1,42 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "home/css/bootstrap.min.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/animate.css' %}">
+
+<!-- dependen de internet -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+<div class="modal-dialog">
+    <div class="modal-content">
+
+        <div class="container-custom" style="width:100%">
+        
+            <div class="content-section">
+                <form method="POST" action="{% url 'suggest' %}">
+                    {%  csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Sugerinos un lenguaje!</legend>
+        
+                        <!-- {{ form.as_p}} -->
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-default" onclick="return cerrar_modal()">Cancelar</button>
+                        <button class="btn btn-outline-info" type="submit">
+                            Enviar
+                        </button>
+                    </div>
+                </form>
+        
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                        Tu sugerencia será revisada por un moderador antes de ser publicada.
+                    </small>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</div>
