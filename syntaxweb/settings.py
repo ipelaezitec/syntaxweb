@@ -41,7 +41,33 @@ INSTALLED_APPS = [
     'home',
     'users',
     'crispy_forms',
+    'ckeditor',
 ]
+
+CKEDITOR_CONFIGS = {
+    'default':{
+        'toolbarl':'Custom',
+        'toolbar_Custom':[
+            ['Bold','Link','Image']
+        ]
+    },
+    'special':{
+        'toolbar':'Special',
+        'toolbar_Special':[
+            ['Undo','Redo'],
+            ['Bold','Italic','Underline','Strike','Subscript','Superscript'],
+            ['TextColor','BGColor'],
+            ['Format','FontSize'],
+            ['NumberedList','BulletedList','-','Outdent','Ident','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+            ['Link','Unlink'],
+            ['RemoveFormat',]
+        ],
+        'height':130,
+        'width':750
+    }
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

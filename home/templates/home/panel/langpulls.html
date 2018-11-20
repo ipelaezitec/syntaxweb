@@ -8,9 +8,9 @@
 
             <div class="list-group p-1 animated flipInX">
 
-              <a href="{% url 'langpull' id=langpull.id %}" class="list-group-item list-group-item-action">
+              <a href="{% url 'lang' id=langpull.id %}" class="list-group-item list-group-item-action">
                    <div class="d-flex justify-content-between">
-                    <h6 class="">{{ langpull.name }}</h6>
+                        <h6 class="">{{ langpull.name }}</h6>
                     <small class="mt-1">created at :  {{langpull.created|naturaltime}}</small>
                   </div>
               </a>

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 #
@@ -21,7 +23,8 @@ class Sentence(models.Model):
         return self.name
 
 class SyntaxPost(models.Model):
-    content = models.TextField(max_length=3000,verbose_name="Contenido")
+    #content = models.TextField(max_length=3000,verbose_name="Contenido")
+    content = RichTextField(max_length=3000,verbose_name="Contenido",config_name='special')
     updated = models.DateTimeField(auto_now=True, verbose_name="Fecha de edición")
     author = models.ForeignKey(User, verbose_name="Autor",blank=True,on_delete=models.SET_NULL,null=True)
     sentence = models.ForeignKey(Sentence, verbose_name="sentencia",on_delete=models.CASCADE)

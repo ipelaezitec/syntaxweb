@@ -12,7 +12,16 @@
                     Favoritos <i class="far fa-bookmark ml-3"></i>
                 </a>
                 {% endif %}
-                <div class="nav-category box-shadow animated fadeInLeft">Categorias</div>
+                <div class="nav-category box-shadow animated fadeInLeft">
+                    <h5 class="font-montserrat text-center"> Sentencias </h5>
+                    <ul>
+                        {% for sentence in sentences%}
+                            <a href="#">
+                                <li>{{ sentence.name }}</li>
+                            </a>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
 

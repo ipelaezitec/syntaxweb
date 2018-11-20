@@ -13,8 +13,12 @@
                 <small class="mt-1"></small>
         </div>
       </div>
+        <hr>
+
       <ul class="list-group list-group-flush">
         {% for syntaxpost in syntaxposts %}
+            <hr>
+            <h6 class="p-2 font-montserrat"> {{ syntaxpost.sentence.name }} <a href={% url 'editSnyax' id=syntaxpost.id %}>Editar sentencia</a></h6>
             <li class="list-group-item">
                     <div class="d-flex flex-row syntax-post box-shadow">
                         <div class="left-frame col-sm-3 col-md-3 col-xs-12">
@@ -26,7 +30,7 @@
                             <!-- div de arriba con solo syntax -->
                             <div class="m-3">
                                 <div class="w-75">
-                                    <p class="text-wraped font-raleway">{{ syntaxpost.content }}</p>
+                                    <p class="text-wraped font-raleway">{{ syntaxpost.content | safe }}</p>
 
                                 </div>
                             </div>

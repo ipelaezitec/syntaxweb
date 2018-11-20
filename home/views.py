@@ -1,13 +1,15 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 
 from home.models import SyntaxPost,Language,Marker,Sentence,Report
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+from .forms import SyntaxForm
 
 # Create your views here.
 
 def home(request):
+    sentences = Sentence.objects.all()
     posts =SyntaxPost.objects.all()
     languages = Language.objects.all()
     #sp = SyntaxPost.objects.first()
@@ -15,10 +17,12 @@ def home(request):
     context = {
         'posts':posts,
         'languages':languages,
+        'sentences':sentences,
     }
     return render(request,'home/home.html',context)
 
-#temporal
+#temporal para probar boludeces, syntaxposts se puede totalmente borrar o modificar , incluso eliminar syntaxpost.html
+# Aunque syntaxpost.html tiene el estilo de un post.
 def syntaxposts(request):
     print(request.GET)
     posts =SyntaxPost.objects.all()
@@ -62,17 +66,8 @@ def langpulls(request):
     }
     return render(request, 'home/panel/langpulls.html',context)
 
-@staff_member_required
-def langpull(request,id):
-    syntaxposts = SyntaxPost.objects.filter(language_id=id)
-    #languageName = syntaxposts.first().language
-    #print(languageName)
 
-    context={
-        'syntaxposts': syntaxposts,
 
-    }
-    return render(request,'home/panel/langpull.html',context)
 
 @staff_member_required
 def updateLanguage(request,id):
@@ -93,12 +88,40 @@ def languages(request):
 @staff_member_required
 def lang(request,id):
     syntaxposts = SyntaxPost.objects.filter(language_id=id)
-
+    language = Language.objects.get(pk=id)
+    if language.active == 'N':
+        texto = {
+            'usuario': 'Sugerido por',
+            'lenguaje' : 'Lenguaje sugerido : '
+        }
+    else :
+        texto = {
+            'usuario': 'Sugerido por',
+            'lenguaje': 'Lenguaje : '
+        }
+    print (language.active)
     context={
+        'language':language,
         'syntaxposts': syntaxposts,
-
+        'texto':texto,
     }
     return render(request,'home/panel/lang.html',context)
+
+@staff_member_required
+def editSyntax(request,id):
+    #synposts = SyntaxPost.objects.all(id=id)
+
+    item = get_object_or_404(SyntaxPost, id=id)
+    form = SyntaxForm(request.POST or None, instance=item)
+    context = {
+        'syntaxpost': item,
+        'form': form
+    }
+    if form.is_valid():
+        form.save()
+        return redirect('lang', id=id)
+
+    return render(request, 'home/panel/editsyntax.html', context)
 
 @staff_member_required
 def reports(request):
@@ -112,12 +135,20 @@ def reports(request):
 @staff_member_required
 def report (request,id):
     report = Report.objects.get(pk=id)
-    print (report)
+    postid = report.post.id
 
+    item = get_object_or_404(SyntaxPost, id=postid)
+    form = SyntaxForm(request.POST or None, instance=item)
     context = {
-        'report':report,
+        'report': report,
+        'form': form
     }
+    if form.is_valid():
+        form.save()
+        return redirect('report', id=id)
+
     return render(request, 'home/panel/report.html', context)
+
 
 @staff_member_required
 def reportsResolved(request):
@@ -135,3 +166,12 @@ def changeToResolved(request,id):
     report.resolved = 'Y'
     report.save()
     return redirect('reports')
+
+@staff_member_required
+def deleteReport(request,id):
+    report = Report.objects.get(id=id)
+    report.delete()
+    return redirect('reports')
+
+
+

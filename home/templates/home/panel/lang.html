@@ -5,16 +5,20 @@
     <div class="row font-raleway">
     <div class="card w-100 m-2">
       <div class="card-header">
-        Lenguage sugerido : {{ syntaxposts.first.language.name }}
+        {{ texto.lenguaje }} {{ language.name }}
       </div>
       <div class="card-body">
         <div class="d-flex justify-content-between">
-            <h4 class="card-title"><small>Sugerido por</small> {{ syntaxposts.first.author.username}}</h4>
+            <h4 class="card-title"><small>{{ texto.usuario }}</small> {{ syntaxposts.first.author.username}}</h4>
                 <small class="mt-1"></small>
         </div>
       </div>
+        <hr>
+
       <ul class="list-group list-group-flush">
         {% for syntaxpost in syntaxposts %}
+            <hr>
+            <h6 class="p-2 font-montserrat"> {{ syntaxpost.sentence.name }} <a href={% url 'editSyntax' id=syntaxpost.id %}>Editar sentencia</a></h6>
             <li class="list-group-item">
                     <div class="d-flex flex-row syntax-post box-shadow">
                         <div class="left-frame col-sm-3 col-md-3 col-xs-12">
@@ -26,11 +30,12 @@
                             <!-- div de arriba con solo syntax -->
                             <div class="m-3">
                                 <div class="w-75">
-                                    <p class="text-wraped font-raleway">{{ syntaxpost.content }}</p>
+                                    <p class="text-wraped font-raleway">{{ syntaxpost.content | safe}}</p>
 
                                 </div>
                             </div>
                             <!-- div de abajo con botones -->
+
                         </div>
                     </div>
             </li>
@@ -38,12 +43,13 @@
 
         {% endfor %}
 
-
-{% comment %}        <li class="list-group-item">
+        {% if language.active == False %}
+        <li class="list-group-item">
             <div>
                 <a href="{% url 'updatelang' id=syntaxposts.first.language.id %}" class="btn btn-success float-right"> Habilitar </a>
             </div>
-        </li>{% endcomment %}
+        </li>
+        {% endif %}
 
       </ul>
     </div>
