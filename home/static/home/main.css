@@ -70,6 +70,8 @@
     background-color: #ebebeb;
 }
 
+
+
 .left-frame{
     background-color: #f4f4f4;
 }
@@ -107,4 +109,8 @@
 
 }
 
-/* effects*/
+/* effect */
+
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.5); }

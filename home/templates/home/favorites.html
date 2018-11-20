@@ -20,17 +20,50 @@
                             <div class="text-center font-weight-bold font-montserrat">{{ marker.post.language.name }}</div>
                         </div>
 
-                        <div class="col font-raleway">
+                        <div class="row font-raleway w-100 m-1">
                             <!-- div de arriba con solo syntax -->
-                            <div class="m-3">
+                            <div class="col m-3 ">
                                 <div class="w-75">
                                     <p class="text-wraped font-raleway">{{ marker.post.content | safe }}</p>
 
                                 </div>
                             </div>
                             <!-- div de abajo con botones -->
+                            <div class="col justify-content-end align-self-end">
+                                <div class="float-right">
+                                    <i class="fas fa-exclamation-triangle m-1 grow"></i>
+                                    <i class="far fa-bookmark m-1  grow"></i>
+
+                                    <style>
+                                        /* Si lo pongo en el css no anda ._. no entiendo que básico me olvidé */
+                                        .grow { transition: all .2s ease-in-out; }
+                                        .grow:hover { transform: scale(1.5); }
+                                    </style>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+{% comment %}                    <div class="d-flex flex-row syntax-post animated bounceInRight box-shadow">
+                        <div class="left-frame col-sm-3 col-md-3 col-xs-12">
+                            <img class="p-2 mt-2 w-100" src="{{ marker.post.language.img.url }}" alt="language img">
+                            <div class="text-center font-weight-bold font-montserrat">{{ marker.post.language.name }}</div>
+                        </div>
+
+                        <div class="col font-raleway">
+                            <!-- div de arriba con solo syntax -->
+                            <div class="m-3 ">
+                                <div class="w-75">
+                                    <p class="text-wraped font-raleway">{{ marker.post.content | safe }}</p>
+
+                                </div>
+                            </div>
+                            <!-- div de abajo con botones -->
+                            <div class="fixed-bottom">
+                                test
+                            </div>
+                        </div>
+                    </div>{% endcomment %}
             {% endfor %}
         </div>
     </div>
