@@ -36,10 +36,12 @@ class Contacts(CreateView):
 class ContactList(ListView):
     template_name = 'home/panel/list-contact.html'
     model = Contact
+    paginate_by = 4
 
 class SuggestionsList(ListView):
     template_name = 'home/panel/list-suggestions.html'
     model = Suggestion
+    paginate_by = 4
 
 def filtrar(request):
     pass
