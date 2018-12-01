@@ -1,0 +1,34 @@
+{% extends 'home/panel/panel.html' %}
+{% load humanize %}
+
+{% block panelcontent %}
+
+
+    <h2 class="text-center font-montserrat"><b> Listado de contacto </b></h2>
+    <div class="font-raleway">
+        {% for contacto in object_list %}
+
+            <div class="list-group mb-2 animated flipInX">
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start box-shadow">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{contacto.name}}</h5>
+                  {% comment %} <small>{{report.created|naturaltime}}</small> {% endcomment %}
+                </div>
+                <p class="mb-1">{{ contacto.mensaje }}</p>
+                <small>email :</small> <strong>{{ contacto.email }} </strong>
+              </a>
+            </div>
+
+        {% empty %}
+          <div class="alert alert-info mt-4 animated flipInX" role="alert">
+
+                <h5 class="text-center font-montserrat ">Nadie ha mandado una solicitud de contacto.</h5>
+            </div>
+        {% endfor %}
+
+    </div> 
+
+
+
+
+{% endblock%}

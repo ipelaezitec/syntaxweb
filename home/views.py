@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 
-from home.models import SyntaxPost,Language,Marker,Sentence,Report
+from home.models import SyntaxPost,Language,Marker,Sentence,Report,Contact,Suggestion
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import SyntaxForm, SuggestionForm, ContactForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView,ListView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -29,9 +29,17 @@ class Suggest(CreateView):
     form_class = SuggestionForm
     sucess_url = reverse_lazy('syntaxpost')
 
-class Contact(CreateView):
+class Contacts(CreateView):
     template_name = 'home/contact.html'
     form_class = ContactForm
+
+class ContactList(ListView):
+    template_name = 'home/panel/list-contact.html'
+    model = Contact
+
+class SuggestionsList(ListView):
+    template_name = 'home/panel/list-suggestions.html'
+    model = Suggestion
 
 def filtrar(request):
     pass
