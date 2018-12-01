@@ -1,5 +1,7 @@
+from django.conf.urls import url
 from django.urls import path
 from . import views
+from .views import Suggest,Contact
 
 
 #la url syntaxpost es temporal, solo sirve para mostrar html plano
@@ -8,6 +10,11 @@ urlpatterns = [
     path('syntaxposts/',views.syntaxposts,name='syntaxpost'),
     path('favorites/',views.favorites,name='favorites'),
     path('panel/', views.panel, name='panel'),
+    path('suggest', Suggest.as_view(success_url="/syntaxposts/"), name="suggest"),
+    path('contact', Contact.as_view(success_url="/syntaxposts/"), name="contact"),
+    path('filter', views.filtrar, name="filtrar"),
+    
+
 
     path('panel/langpulls',views.langpulls,name='langpulls'),
     path('panel/langpulls/update/<int:id>',views.updateLanguage,name='updatelang'),

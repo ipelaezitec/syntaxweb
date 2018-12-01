@@ -4,7 +4,9 @@ from django.http import HttpResponse
 from home.models import SyntaxPost,Language,Marker,Sentence,Report
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import SyntaxForm
+from .forms import SyntaxForm, SuggestionForm, ContactForm
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -21,6 +23,18 @@ def home(request):
     }
     return render(request,'home/home.html',context)
 
+
+class Suggest(CreateView):
+    template_name = 'home/suggest.html'
+    form_class = SuggestionForm
+    sucess_url = reverse_lazy('syntaxpost')
+
+class Contact(CreateView):
+    template_name = 'home/contact.html'
+    form_class = ContactForm
+
+def filtrar(request):
+    pass
 #temporal para probar boludeces, syntaxposts se puede totalmente borrar o modificar , incluso eliminar syntaxpost.html
 # Aunque syntaxpost.html tiene el estilo de un post.
 def syntaxposts(request):
