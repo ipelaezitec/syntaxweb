@@ -1,5 +1,7 @@
 /* General */
 
+
+
 .container-custom{
     width: 35%;
     margin:auto;
@@ -18,14 +20,15 @@
 }
 
 .footer{
-    height: 40px;
+    position: fixed;    
+    height: 30px;
     background-color: #1d1d1d;
-    position: fixed;
     left:0;
     bottom:0;
-    right: 0;
     width : 100% ;
+    text-align: center;
 }
+
 
 .container-fluid{
     margin-bottom: 42px;
@@ -94,7 +97,8 @@
 .nav-category{
     margin-top:6px;
     background-color: #f5f5f5;
-    min-height: 548px;
+    /* min-height: 528px; */
+    min-height: 80vh;
 }
 
 /* General css */
