@@ -1,4 +1,5 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+from django.views.decorators.csrf import csrf_exempt
 from django.urls import path
 from . import views
 from .views import Suggest,Contact
@@ -12,7 +13,7 @@ urlpatterns = [
     path('panel/', views.panel, name='panel'),
     path('suggest', Suggest.as_view(success_url="/syntaxposts/"), name="suggest"),
     path('contact', Contact.as_view(success_url="/syntaxposts/"), name="contact"),
-    path('filter', views.filtrar, name="filtrar"),
+    path('api/filter', csrf_exempt(views.filterPosts) , name="rest_framework"),
     
 
 

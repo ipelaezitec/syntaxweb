@@ -15,8 +15,11 @@
                 <div class="nav-category box-shadow animated fadeInLeft">
                     <h5 class="font-montserrat text-center"> Sentencias </h5>
                     <ul>
+                        <a href="#" onclick="setSentence('')">
+                            <li>Todo</li>
+                        </a>
                         {% for sentence in sentences%}
-                            <a href="#">
+                            <a href="#" onclick="setSentence('{{ sentence.name }}')">
                                 <li>{{ sentence.name }}</li>
                             </a>
                         {% endfor %}
@@ -40,7 +43,7 @@
                 
                 <div class="p-1">
                     
-                    <a href="{% url 'syntaxpost' %}" class="">
+                    <a class="" onclick="filtrar('{{lang.id}}')">
                         <div class="align-content-center">
                             <img class="lang-img" src="{{ lang.img.url }}" >
                             
@@ -61,15 +64,118 @@
                 <button class="btn" onclick="return abrir_modal('{% url 'suggest' %}')">Add</button>
             </div>
             <!-- Syntax Post  Tipo : Iterable -->
-            {% block syntaxposts %}
+            <div id="syntaxpost">
 
-            {% endblock syntaxposts %}
+            </div>
 
         </div>
     </div>
     <div id="popup" class="modal" role="dialog">
     </div>
     <script>
+    let filtros = [];
+    let elementos = [];
+    let sentence = '';
+    function filtrar(id){
+        //Aca iria el axios
+        var $crf_token = Cookies.get('csrftoken');
+        if (filtros.indexOf(id) != -1) {
+            filtros.pop(filtros.indexOf(id));
+        }else{
+            filtros.push(id);
+        }
+        axios.post('http://127.0.0.1:8000/api/filter',{"param":filtros},{headers:{"X-CSRFToken": $crf_token}})
+        .then( (response) => {
+            elementos = [];
+            (response.data).forEach(element => {
+                elementos.push(element);
+            });
+        })
+        .then(()=>{
+            renderPost(elementos);
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        console.log(elementos);
+    }
+    function renderPost(elementos){
+        $('#syntaxpost').html('');
+        if (sentence != '') {
+            elementos.forEach(element => {
+                console.log(element.sentence, sentence);
+                if(element.sentence == sentence) {
+                $('#syntaxpost').append(`
+                <div class="d-flex flex-row syntax-post animated bounceInRight box-shadow" id="${ element.sentence }">
+                                <div class="left-frame col-sm-3 col-md-3 col-xs-12">
+                                    <img class="p-2 mt-2 w-100" src="http://127.0.0.1:8000/media/${ element.image }" alt="language img">
+                                    <div class="text-center font-weight-bold font-montserrat">${ element.name }</div>
+                                </div>
+
+                                <div class="row font-raleway w-100 m-1">
+                                    <!-- div de arriba con solo syntax -->
+                                    <div class="col m-3 ">
+                                        <div class="w-75">
+                                            <p class="text-wraped font-raleway">${ element.content }</p>
+
+                                        </div>
+                                    </div>
+                                    <!-- div de abajo con botones -->
+                                    <div class="col justify-content-end align-self-end">
+                                        <div class="float-right">
+                                            <i class="fas fa-exclamation-triangle m-1 grow"></i>
+                                            <i class="far fa-bookmark m-1  grow"></i>
+
+                                            <style>
+                                                /* Si lo pongo en el css no anda ._. no entiendo que básico me olvidé */
+                                                .grow { transition: all .2s ease-in-out; }
+                                                .grow:hover { transform: scale(1.5); }
+                                            </style>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                `)
+            }});
+        }else{
+        elementos.forEach(element => {
+            $('#syntaxpost').append(`
+            <div class="d-flex flex-row syntax-post animated bounceInRight box-shadow" id="${ element.sentence }">
+                            <div class="left-frame col-sm-3 col-md-3 col-xs-12">
+                                <img class="p-2 mt-2 w-100" src="http://127.0.0.1:8000/media/${ element.image }" alt="language img">
+                                <div class="text-center font-weight-bold font-montserrat">${ element.name }</div>
+                            </div>
+
+                            <div class="row font-raleway w-100 m-1">
+                                <!-- div de arriba con solo syntax -->
+                                <div class="col m-3 ">
+                                    <div class="w-75">
+                                        <p class="text-wraped font-raleway">${ element.content }</p>
+
+                                    </div>
+                                </div>
+                                <!-- div de abajo con botones -->
+                                <div class="col justify-content-end align-self-end">
+                                    <div class="float-right">
+                                        <i class="fas fa-exclamation-triangle m-1 grow"></i>
+                                        <i class="far fa-bookmark m-1  grow"></i>
+
+                                        <style>
+                                            /* Si lo pongo en el css no anda ._. no entiendo que básico me olvidé */
+                                            .grow { transition: all .2s ease-in-out; }
+                                            .grow:hover { transform: scale(1.5); }
+                                        </style>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            `)
+        })};
+    }
+    function setSentence(sent){
+        sentence = sent;
+        renderPost(elementos);
+    }
     function abrir_modal(url){
         $('#popup').load(url, function()
         {
