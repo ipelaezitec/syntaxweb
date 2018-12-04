@@ -101,7 +101,16 @@
 .font-montserrat{font-family: 'Montserrat',sans-serif;}
 .font-raleway{font-family: 'Raleway',sans-serif;}
 
-.text-wraped{word-wrap: break-word;}
+.text-wraped{
+    overflow-wrap: break-word;
+    word-wrap: break-word;   
+}
+
+.testo{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 /* /panel css  */
 
