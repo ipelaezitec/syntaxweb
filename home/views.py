@@ -2,11 +2,17 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 
 from home.models import SyntaxPost,Language,Marker,Sentence,Report,Contact,Suggestion
+from django.core.exceptions import ObjectDoesNotExist
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from .forms import SyntaxForm, SuggestionForm, ContactForm
 from django.views.generic import CreateView,ListView
 from django.urls import reverse_lazy
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import PostSerializer
 
 # Create your views here.
 
@@ -197,5 +203,24 @@ def deleteReport(request,id):
     report.delete()
     return redirect('reports')
 
-
-
+@api_view(['POST'])
+def filterPosts(request):
+    if request.method == 'POST' :
+        data = request.data #List of languagues in 'param' ['Python','C#']
+        res = []
+        for i in data['param']: 
+            try:
+                post = SyntaxPost.objects.filter(language_id=i)
+                for j in post:
+                    imagePath = str(j.language.img)
+                    res.append({
+                        'id': j.id,
+                        'name': j.language.name,
+                        'content': j.content,
+                        'image': imagePath,
+                        'sentence': j.sentence.name,
+                    })
+            except ObjectDoesNotExist:
+                print('El id ingresado no existe')
+            
+        return Response(res)
