@@ -116,6 +116,11 @@
     white-space: nowrap;
 }
 
+.link-nodec{
+    text-decoration: none;
+
+}
+
 /* /panel css  */
 
 .panel-card{
@@ -127,6 +132,11 @@
   border-radius: 8px;
   background-color: #ededed;
 
+}
+
+.list-group-item.active{
+    background-color:#46858f !important;
+    border-color: #118294 !important;
 }
 
 /* effect */

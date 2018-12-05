@@ -13,15 +13,18 @@
                 </a>
                 {% endif %}
                 <div class="nav-category box-shadow animated fadeInLeft">
-                    <h5 class="font-montserrat text-center"> Sentencias </h5>
-                    <ul>
-                        <a href="#" onclick="setSentence('')">
-                            <li>Todo</li>
-                        </a>
+                    <h5 class="font-montserrat text-center pt-2 pb-2"><mark> Sentencias </mark></h5>
+                    <ul class="list-group list-group-flush">
+                        <a  href="#" 
+                            id="allsent"
+                            class="list-group-item list-group-item-action active"
+                            onclick="setSentence('')">Todas</a>
+
                         {% for sentence in sentences%}
-                            <a href="#" onclick="setSentence('{{ sentence.name }}')">
-                                <li>{{ sentence.name }}</li>
-                            </a>
+                            <a  href="#" 
+                                id="{{ sentence.name }}" 
+                                class="list-group-item list-group-item-action" 
+                                onclick="setSentence('{{ sentence.name }}')">{{ sentence.name }}</a>
                         {% endfor %}
                     </ul>
                 </div>
@@ -72,7 +75,10 @@
     let filtros = [];
     let elementos = [];
     let sentence = '';
+    let previousActive = '';
+    
     function filtrar(id){
+        // hay que agregar un efecto de brillo o enmarcado a lo que esta seleccionado.
         //Aca iria el axios
         var $crf_token = Cookies.get('csrftoken');
         if (filtros.indexOf(id) != -1) {
@@ -169,8 +175,21 @@
         })};
     }
     function setSentence(sent){
+
+        if (previousActive){
+            previousActive.classList.remove("active");
+        }else{
+            document.getElementById('allsent').classList.remove("active");
+        }   
+        
+        let liActive;
+        liActive = (sent == '' ) ? liActive = document.getElementById('allsent') : liActive = document.getElementById(`${sent}`);
+        liActive.classList.add("active");
+        previousActive = liActive;
+        
         sentence = sent;
         renderPost(elementos);
+
     }
     function abrir_modal(url){
         $('#popup').load(url, function()
