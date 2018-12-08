@@ -9,12 +9,14 @@
 
           <div class="dropdown-divider"></div>
 
-
-          <a href="{% url 'langpulls' %}" class="text-left  btn btn-info  btn-block font-montserrat" role="button" aria-pressed="true">
-            Lenguajes sugeridos
-          </a>
+          <a href="{% url 'suggestionslist' %}" class="text-left btn btn-info  btn-block   font-montserrat" role="button" aria-pressed="true">
+            Listado de sugerencias
+          </a> 
             <a href="{% url 'langs' %}" class="button-effect text-left  btn btn-info  btn-block font-montserrat" role="button" aria-pressed="true">
             Lenguajes activos
+          </a>
+              <a href="{% url 'langpulls' %}" class="text-left  btn btn-info  btn-block font-montserrat" role="button" aria-pressed="true">
+            Lenguajes desactivados
           </a>
             <hr>
             <a href="{% url 'reports' %}" class="text-left btn btn-info btn-block  font-montserrat" role="button" aria-pressed="true">
@@ -26,9 +28,6 @@
             <div class="dropdown-divider"></div>
            <a href="{% url 'contactlist' %}" class="text-left btn btn-info  btn-block   font-montserrat" role="button" aria-pressed="true">
             Listado de contactos 
-          </a> 
-          <a href="{% url 'suggestionslist' %}" class="text-left btn btn-info  btn-block   font-montserrat" role="button" aria-pressed="true">
-            Listado de sugerencias
           </a> 
 
         </div>
