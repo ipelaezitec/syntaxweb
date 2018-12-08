@@ -174,8 +174,8 @@
             `)
         })};
     }
-    function setSentence(sent){
 
+    function setActiveSentenceButton(sent){
         if (previousActive){
             previousActive.classList.remove("active");
         }else{
@@ -186,7 +186,9 @@
         liActive = (sent == '' ) ? liActive = document.getElementById('allsent') : liActive = document.getElementById(`${sent}`);
         liActive.classList.add("active");
         previousActive = liActive;
-        
+    }
+    function setSentence(sent){
+        setActiveSentencesButton(sent)
         sentence = sent;
         renderPost(elementos);
 
