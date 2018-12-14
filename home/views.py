@@ -88,15 +88,13 @@ def panel(request):
 
 @staff_member_required
 def langpulls(request):
-    # esta para el orto, pero me cansé de renegar con esta query
+    
     langpulls = Language.objects.filter(active=False).order_by('-created')
 
     context = {
         'langpulls':langpulls,
     }
     return render(request, 'home/panel/langpulls.html',context)
-
-
 
 
 @staff_member_required
@@ -142,6 +140,8 @@ def editSyntax(request,id):
     #synposts = SyntaxPost.objects.all(id=id)
 
     item = get_object_or_404(SyntaxPost, id=id)
+    post = SyntaxPost.objects.get(pk=id)
+    
     form = SyntaxForm(request.POST or None, instance=item)
     context = {
         'syntaxpost': item,
@@ -149,14 +149,14 @@ def editSyntax(request,id):
     }
     if form.is_valid():
         form.save()
-        return redirect('lang', id=id)
+        return redirect('lang', id=post.language.id)
 
     return render(request, 'home/panel/editsyntax.html', context)
 
 @staff_member_required
 def reports(request):
     reports = Report.objects.filter(resolved='N').order_by('-created')
-    print (reports)
+    
     context = {
         'reports': reports,
     }
@@ -183,7 +183,7 @@ def report (request,id):
 @staff_member_required
 def reportsResolved(request):
     reports = Report.objects.filter(resolved='Y').order_by('-created')
-    print (reports)
+    
     context = {
         'reports': reports,
     }
