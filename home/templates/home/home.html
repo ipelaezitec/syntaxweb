@@ -82,7 +82,7 @@
         //Aca iria el axios
         var $crf_token = Cookies.get('csrftoken');
         if (filtros.indexOf(id) != -1) {
-            filtros.pop(filtros.indexOf(id));
+            filtros.splice(filtros.indexOf(id),1);
         }else{
             filtros.push(id);
         }
@@ -191,7 +191,6 @@
         setActiveSentencesButton(sent)
         sentence = sent;
         renderPost(elementos);
-
     }
     function abrir_modal(url){
         $('#popup').load(url, function()

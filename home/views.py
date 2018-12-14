@@ -49,13 +49,11 @@ class SuggestionsList(ListView):
     model = Suggestion
     paginate_by = 4
 
-def filtrar(request):
-    pass
 #temporal para probar boludeces, syntaxposts se puede totalmente borrar o modificar , incluso eliminar syntaxpost.html
 # Aunque syntaxpost.html tiene el estilo de un post.
 def syntaxposts(request):
     print(request.GET)
-    posts =SyntaxPost.objects.all()
+    posts = SyntaxPost.objects.all()
     languages = Language.objects.all()
     #sp = SyntaxPost.objects.first()
     context = {
